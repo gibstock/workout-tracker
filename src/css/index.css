@@ -14,7 +14,7 @@ header {
 }
 
 .main-container {
-  background-color: hsla(0, 0%, 95%, .2);
+  background-color: hsla(0, 0%, 95%, .1);
   padding: 0 1em;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;

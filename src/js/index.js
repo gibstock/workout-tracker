@@ -27,22 +27,18 @@ window.addEventListener('DOMContentLoaded', ()=> {
     })
     count = parseInt(localStorage.getItem('count'))
     countOutput.textContent = count
-    console.log(count)
   } else {
     daySetting = [...Array(daysInMonth)]
     count = 0;
-    console.log(daySetting)
   }
 
 })
 
 const insertAt = (array, index, ...elementsArray) => {
   array.splice(index, 0, ...elementsArray)
-  console.log(array)
 }
 days.forEach((day, i) => {
   day.addEventListener('click', (e)=> {
-    console.log('click')
     if(!day.style.backgroundColor) {
       day.style.backgroundColor = pushups
       day.setAttribute('data-state', 'pushups')
@@ -57,7 +53,6 @@ days.forEach((day, i) => {
       let arrStr = JSON.stringify(daySetting)
       localStorage.setItem('divSetting', arrStr)
       localStorage.setItem('count', count)
-      console.log(daySetting)
     } else if (day.dataset.state === 'pushups') {
       day.style.backgroundColor = dance
       day.setAttribute('data-state', 'dance')
@@ -67,7 +62,6 @@ days.forEach((day, i) => {
         dataState: 'dance',
         bgColor: dance
       }
-      console.log(daySetting)
       let arrStr = JSON.stringify(daySetting)
       localStorage.setItem('divSetting', arrStr)
       localStorage.setItem('count', count)
@@ -94,7 +88,6 @@ days.forEach((day, i) => {
       count -= 1
       countOutput.textContent = count
       localStorage.setItem('count', count)
-      console.log(daySetting)
     }
   })
 })
