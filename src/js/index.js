@@ -9,7 +9,7 @@ let reset = ''
 let count;
 let daysInMonth = 31
 let daySetting = [...Array(daysInMonth)]
-localStorage.clear();
+// localStorage.clear();
 window.addEventListener('DOMContentLoaded', ()=> {
   if(divSetting) {
     let getSetting = localStorage.getItem('divSetting');
