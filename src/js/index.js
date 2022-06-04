@@ -283,7 +283,9 @@ const clickDays = (currMonth) => {
 window.addEventListener('DOMContentLoaded', ()=> {
   if(currentLocalMonth) {
     console.log('found curLoMo')
-    if(currentLocalMonth === month) return
+    if(currentLocalMonth === month) {
+      return
+    } 
     else {
       return
     }
@@ -292,12 +294,12 @@ window.addEventListener('DOMContentLoaded', ()=> {
    
   }
   getClientSettings(month, currentMonth)
+  clickDays(month)
   
 
   // const insertAt = (array, index, ...elementsArray) => {
   //   array.splice(index, 0, ...elementsArray)
   // }
-  clickDays(month)
   
   prevMonth.addEventListener('click', () => {
     if((month - 1) < 0) {
@@ -308,8 +310,8 @@ window.addEventListener('DOMContentLoaded', ()=> {
     createCalendar(month)
     getClientSettings(month, currentMonth)
     clickDays(month)
-
   })
+  
   nextMonth.addEventListener('click', () => {
     if((month + 1) > 11) {
       month = 11
@@ -319,6 +321,5 @@ window.addEventListener('DOMContentLoaded', ()=> {
     createCalendar(month)
     getClientSettings(month, currentMonth)
     clickDays(month)
-
   })
 })
