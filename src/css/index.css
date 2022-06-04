@@ -113,3 +113,7 @@ article {
   align-items: center;
   gap: 2em;
 }
+.clear-cache input {
+  background-color: transparent;
+  color: #fff;
+}

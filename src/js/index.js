@@ -8,6 +8,8 @@ const monthTitle = document.querySelector('.month-title')
 const monthTitleText = monthTitle.querySelector('h2')
 const prevMonth = document.querySelector('.left-arrow')
 const nextMonth = document.querySelector('.right-arrow')
+const clrCache = document.querySelector('.clear-cache')
+const clrButton = clrCache.querySelector('input')
 
 let pushups = 'hsl(300, 80%, 70%)'
 let dance = 'hsl(280, 80%, 70%)'
@@ -88,7 +90,6 @@ let daySetting = [{
   ]
   
 }]
-// localStorage.clear();
 
 const createCalendar = (month) => {
   if(document.querySelector('article')) {
@@ -322,4 +323,10 @@ window.addEventListener('DOMContentLoaded', ()=> {
     getClientSettings(month, currentMonth)
     clickDays(month)
   })
+
+  clrButton.addEventListener('click', () => {
+    localStorage.clear();
+    location.reload()
+  })
+
 })
