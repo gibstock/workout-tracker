@@ -88,7 +88,7 @@ let daySetting = [{
   ]
   
 }]
-// localStorage.clear();
+localStorage.clear();
 
 const createCalendar = (month) => {
   if(document.querySelector('article')) {
