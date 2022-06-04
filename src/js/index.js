@@ -88,7 +88,7 @@ let daySetting = [{
   ]
   
 }]
-localStorage.clear();
+// localStorage.clear();
 
 const createCalendar = (month) => {
   if(document.querySelector('article')) {
@@ -311,7 +311,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
     getClientSettings(month, currentMonth)
     clickDays(month)
   })
-  
+
   nextMonth.addEventListener('click', () => {
     if((month + 1) > 11) {
       month = 11
