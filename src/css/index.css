@@ -49,36 +49,23 @@ article {
   justify-content: center;
   align-items: center;
 }
+.month-title h2 {
+  margin: 1em;
+}
 .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.left-arrow {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 4em;
-  height: 3em;
-  background-image: linear-gradient(to right, white, transparent 95%);
-  clip-path: polygon(0 50%, 100% 0, 100% 100%);
-  justify-self: flex-start;
-  color: hsl(250, 80%, 70%);
+.right-arrow, .left-arrow {
+  color: hsl(250, 0%, 100%);
+  font-size: 3em;
   font-weight: bold;
   cursor: pointer;
 }
-.right-arrow {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 4em;
-  height: 3em;
-  background-image: linear-gradient(to left, white, transparent 95%);
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  justify-self: flex-end;
+.right-arrow:hover, .left-arrow:hover {
   color: hsl(250, 80%, 70%);
-  font-weight: bold;
-  cursor: pointer;
+
 }
 .key-container {
   display: flex;
