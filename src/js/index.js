@@ -349,7 +349,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
       localStorage.setItem(`${e.target.id}`, e.target.outerText)
     })
     content.addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') {
+      if(e.key === 'Enter' || e.which === 13) {
         e.preventDefault()
         e.target.blur()
 
