@@ -19,6 +19,7 @@ const clrButton = clrCache.querySelector('input')
 const contentEditable = document.querySelectorAll('[contenteditable]')
 const colors = document.querySelectorAll('input[type="color"')
 const colorCues = document.querySelectorAll('.color-cue')
+const keys = document.querySelectorAll('.key')
 
 
 
@@ -236,9 +237,21 @@ const getClientSettings =(thisMonth, currentMonth) => {
   
   if(thirdAttCache) contentEditable[2].textContent = thirdAttCache
   
-  if(colorCue0) colorCues[0].style.backgroundColor = colorCue0
-  if(colorCue1) colorCues[1].style.backgroundColor = colorCue1
-  if(colorCue2) colorCues[2].style.backgroundColor = colorCue2
+  if(colorCue0) {
+    colorCues[0].style.backgroundColor = colorCue0
+    keys[0].style.borderBottom = `.5px solid ${colorCue0}`
+    
+  } 
+  if(colorCue1) {
+    colorCues[1].style.backgroundColor = colorCue1
+    keys[1].style.borderBottom = `.5px solid ${colorCue1}`
+    
+  } 
+  if(colorCue2) {
+    colorCues[2].style.backgroundColor = colorCue2
+    keys[2].style.borderBottom = `.5px solid ${colorCue2}`
+
+  } 
 
 }
 
