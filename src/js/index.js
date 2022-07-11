@@ -351,6 +351,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
     content.addEventListener('keypress', (e) => {
       if(e.key === 'Enter' || e.which === 13) {
         e.preventDefault()
+        alert(e.which)
         e.target.blur()
 
       }
