@@ -6,6 +6,9 @@ const currentLocalMonth = localStorage.getItem('currentLocalMonth')
 const firstAttCache = localStorage.getItem('firstAtt')
 const secondAttCache = localStorage.getItem('secondAtt')
 const thirdAttCache = localStorage.getItem('thirdAtt')
+const colorCue0 = localStorage.getItem('colorCue0')
+const colorCue1 = localStorage.getItem('colorCue1')
+const colorCue2 = localStorage.getItem('colorCue2')
 const calendarContainer = document.querySelector('.calendar-container')
 const monthTitle = document.querySelector('.month-title')
 const monthTitleText = monthTitle.querySelector('h2')
@@ -14,12 +17,15 @@ const nextMonth = document.querySelector('.right-arrow')
 const clrCache = document.querySelector('.clear-cache')
 const clrButton = clrCache.querySelector('input')
 const contentEditable = document.querySelectorAll('[contenteditable]')
+const colors = document.querySelectorAll('input[type="color"')
+const colorCues = document.querySelectorAll('.color-cue')
 
 
 
-let pushups = 'hsl(300, 80%, 70%)'
-let dance = 'hsl(280, 80%, 70%)'
-let fullWorkout = 'hsl(250, 80%, 70%)'
+
+let pushups = `${colors[0].value}`
+let dance = `${colors[1].value}`
+let fullWorkout = `${colors[2].value}`
 let reset = ''
 let count;
 const d = new Date()
@@ -224,15 +230,16 @@ const getClientSettings =(thisMonth, currentMonth) => {
     }]
     count = 0;
   }
-  if(firstAttCache) {
-    contentEditable[0].textContent = localStorage.getItem('firstAtt')
-  }
-  if(secondAttCache) {
-    contentEditable[1].textContent = localStorage.getItem('secondAtt')
-  }
-  if(thirdAttCache) {
-    contentEditable[2].textContent = localStorage.getItem('thirdAtt')
-  }
+  if(firstAttCache) contentEditable[0].textContent = firstAttCache
+  
+  if(secondAttCache) contentEditable[1].textContent = secondAttCache
+  
+  if(thirdAttCache) contentEditable[2].textContent = thirdAttCache
+  
+  if(colorCue0) colorCues[0].style.backgroundColor = colorCue0
+  if(colorCue1) colorCues[1].style.backgroundColor = colorCue1
+  if(colorCue2) colorCues[2].style.backgroundColor = colorCue2
+
 }
 
 const clickDays = (currMonth) => {
@@ -352,6 +359,27 @@ window.addEventListener('DOMContentLoaded', ()=> {
       if(e.key === 'Enter' || e.which === 13) {
         e.preventDefault()
         e.target.blur()
+      }
+    })
+  })
+  colors.forEach((color, i) => {
+    color.addEventListener('input', (e) => {
+      switch(i) {
+        case 0:
+          pushups = e.target.value
+          colorCues[i].style.backgroundColor = e.target.value
+          localStorage.setItem(`colorCue${i}`, e.target.value)
+          break;
+        case 1:
+          dance = e.target.value
+          colorCues[i].style.backgroundColor = e.target.value
+          localStorage.setItem(`colorCue${i}`, e.target.value)
+          break;
+        case 2:
+          fullWorkout = e.target.value
+          colorCues[i].style.backgroundColor = e.target.value
+          localStorage.setItem(`colorCue${i}`, e.target.value)
+          break;
       }
     })
   })
