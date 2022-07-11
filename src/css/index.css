@@ -72,6 +72,15 @@ article {
   flex-flow: column;
   align-items: flex-start;
   padding: 0 1em;
+  border-top: 1px solid black;
+}
+.key-container-title, .key-container-info {
+  width: 100%;
+  text-align: center;
+}
+.key-header {
+  margin: .5em 0;
+  padding: 0;
 }
 .key-container .color-cue {
   width: 2em;
@@ -84,14 +93,31 @@ article {
   align-items: center;
   gap: 1em;
 }
+.key h3 {
+  background: #040404;
+  padding: .5em;
+  margin: 0;
+}
 .key:nth-of-type(1) .color-cue {
   background-color: hsl(300, 80%, 70%);
+  border-bottom: .5px solid hsl(300, 80%, 70%);
 }
 .key:nth-of-type(2) .color-cue {
   background-color: hsl(280, 80%, 70%);
+  border-bottom: .5px solid hsl(280, 80%, 70%);
 }
 .key:nth-of-type(3) .color-cue {
   background-color: hsl(250, 80%, 70%);
+  border-bottom: .5px solid hsl(250, 80%, 70%);
+}
+.key:nth-of-type(1){
+  border-bottom: .5px solid hsl(300, 80%, 70%);
+}
+.key:nth-of-type(2) {
+  border-bottom: .5px solid hsl(280, 80%, 70%);
+}
+.key:nth-of-type(3) {
+  border-bottom: .5px solid hsl(250, 80%, 70%);
 }
 .day-count {
   display: flex;

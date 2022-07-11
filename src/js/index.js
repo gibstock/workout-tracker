@@ -3,6 +3,9 @@ const dayCount = document.querySelector('.day-count')
 const countOutput = dayCount.querySelector('span')
 const divSetting = localStorage.getItem('divSetting')
 const currentLocalMonth = localStorage.getItem('currentLocalMonth')
+const firstAttCache = localStorage.getItem('firstAtt')
+const secondAttCache = localStorage.getItem('secondAtt')
+const thirdAttCache = localStorage.getItem('thirdAtt')
 const calendarContainer = document.querySelector('.calendar-container')
 const monthTitle = document.querySelector('.month-title')
 const monthTitleText = monthTitle.querySelector('h2')
@@ -10,6 +13,9 @@ const prevMonth = document.querySelector('.left-arrow')
 const nextMonth = document.querySelector('.right-arrow')
 const clrCache = document.querySelector('.clear-cache')
 const clrButton = clrCache.querySelector('input')
+const contentEditable = document.querySelectorAll('[contenteditable]')
+
+
 
 let pushups = 'hsl(300, 80%, 70%)'
 let dance = 'hsl(280, 80%, 70%)'
@@ -218,6 +224,15 @@ const getClientSettings =(thisMonth, currentMonth) => {
     }]
     count = 0;
   }
+  if(firstAttCache) {
+    contentEditable[0].textContent = localStorage.getItem('firstAtt')
+  }
+  if(secondAttCache) {
+    contentEditable[1].textContent = localStorage.getItem('secondAtt')
+  }
+  if(thirdAttCache) {
+    contentEditable[2].textContent = localStorage.getItem('thirdAtt')
+  }
 }
 
 const clickDays = (currMonth) => {
@@ -327,6 +342,19 @@ window.addEventListener('DOMContentLoaded', ()=> {
   clrButton.addEventListener('click', () => {
     localStorage.clear();
     location.reload()
+  })
+
+  contentEditable.forEach((content) => {
+    content.addEventListener('focusout', (e) => {
+      localStorage.setItem(`${e.target.id}`, e.target.outerText)
+    })
+    content.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        e.preventDefault()
+        e.target.blur()
+
+      }
+    })
   })
 
 })
