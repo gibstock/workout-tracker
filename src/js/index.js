@@ -1,4 +1,3 @@
-// const days = document.querySelectorAll('.days')
 const dayCount = document.querySelector('.day-count')
 const countOutput = dayCount.querySelector('span')
 const divSetting = localStorage.getItem('divSetting')
@@ -20,6 +19,8 @@ const contentEditable = document.querySelectorAll('[contenteditable]')
 const colors = document.querySelectorAll('input[type="color"')
 const colorCues = document.querySelectorAll('.color-cue')
 const keys = document.querySelectorAll('.key')
+const instructionsHeader = document.querySelector('.instructions-header')
+const instructionCaret = document.querySelector('#instruction-caret')
 
 
 
@@ -315,6 +316,66 @@ const clickDays = (currMonth) => {
       })
     })
 }
+const mobileClickDays = (currMonth) => {
+  const days = document.querySelectorAll('.days')
+    days.forEach((day, i) => {
+      day.addEventListener('touchend', (e)=> {
+        if(!day.style.backgroundColor) {
+          day.style.backgroundColor = pushups
+          day.setAttribute('data-state', 'pushups')
+          day.setAttribute('data-arrIndex', i)
+          count +=1
+          countOutput.textContent = count
+          daySetting[0][year][currMonth][Object.keys(daysInMonth)[currMonth]][i] = {
+              divIndex: i,
+              dataState: 'pushups',
+              bgColor: pushups,
+              month: Object.keys(daysInMonth)[currMonth]
+            }
+          let arrStr = JSON.stringify(daySetting)
+          localStorage.setItem('divSetting', arrStr)
+          localStorage.setItem('count', count)
+        } else if (day.dataset.state === 'pushups') {
+          day.style.backgroundColor = dance
+          day.setAttribute('data-state', 'dance')
+          day.setAttribute('data-arrIndex', i)
+          daySetting[0][year][month][Object.keys(daysInMonth)[month]][i] = {
+            divIndex: i,
+            dataState: 'dance',
+            bgColor: dance,
+            month: Object.keys(daysInMonth)[currMonth]
+          }
+          let arrStr = JSON.stringify(daySetting)
+          localStorage.setItem('divSetting', arrStr)
+          localStorage.setItem('count', count)
+        } else if (day.dataset.state === 'dance') {
+          day.style.backgroundColor = fullWorkout
+          day.setAttribute('data-state', 'fullWorkout')
+          day.setAttribute('data-arrIndex', i)
+          daySetting[0][year][month][Object.keys(daysInMonth)[month]][i] = {
+            divIndex: i,
+            dataState: 'fullWorkout',
+            bgColor: fullWorkout,
+            month: Object.keys(daysInMonth)[currMonth]
+    
+          }
+          let arrStr = JSON.stringify(daySetting)
+          localStorage.setItem('divSetting', arrStr)
+          localStorage.setItem('count', count)
+        } else if (day.dataset.state === 'fullWorkout') {
+          day.style.backgroundColor = reset
+          day.removeAttribute('data-state')
+          daySetting[0][year][month][Object.keys(daysInMonth)[month]][i] = undefined
+          day.removeAttribute('data-arrIndex')
+          let arrStr = JSON.stringify(daySetting)
+          localStorage.setItem('divSetting', arrStr)
+          count -= 1
+          countOutput.textContent = count
+          localStorage.setItem('count', count)
+        }
+      })
+    })
+}
 
 window.addEventListener('DOMContentLoaded', ()=> {
   if(currentLocalMonth) {
@@ -330,12 +391,13 @@ window.addEventListener('DOMContentLoaded', ()=> {
    
   }
   getClientSettings(month, currentMonth)
-  clickDays(month)
-  
-
-  // const insertAt = (array, index, ...elementsArray) => {
-  //   array.splice(index, 0, ...elementsArray)
-  // }
+  if(/Android|Pixel|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+    console.log('running mobile or ipad')
+    mobileClickDays(month)
+  } else {
+    console.log('running desktop')
+    clickDays(month)
+  }
   
   prevMonth.addEventListener('click', () => {
     if((month - 1) < 0) {
@@ -345,7 +407,14 @@ window.addEventListener('DOMContentLoaded', ()=> {
     }
     createCalendar(month)
     getClientSettings(month, currentMonth)
-    clickDays(month)
+    if(/Android|Pixel|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+      console.log('running mobile or ipad')
+      mobileClickDays(month)
+    } else {
+      console.log('running desktop')
+      clickDays(month)
+    }
+    // clickDays(month)
   })
 
   nextMonth.addEventListener('click', () => {
@@ -356,12 +425,21 @@ window.addEventListener('DOMContentLoaded', ()=> {
     }
     createCalendar(month)
     getClientSettings(month, currentMonth)
-    clickDays(month)
+    if(/Android|Pixel|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+      console.log('running mobile or ipad')
+      mobileClickDays(month)
+    } else {
+      console.log('running desktop')
+      clickDays(month)
+    }
+    // clickDays(month)
   })
 
   clrButton.addEventListener('click', () => {
-    localStorage.clear();
-    location.reload()
+    if(confirm("Are you sure you want to reset? You're about to erase all of your settings and your day count.")) {
+      localStorage.clear();
+      location.reload()
+    }
   })
 
   contentEditable.forEach((content) => {
@@ -395,6 +473,11 @@ window.addEventListener('DOMContentLoaded', ()=> {
           break;
       }
     })
+  })
+
+  instructionsHeader.addEventListener('touchend', () => {
+    instructionCaret.classList.toggle('rotate')
+    document.querySelector('.instructions-dropdown').classList.toggle('show')
   })
 
 })

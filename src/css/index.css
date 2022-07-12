@@ -5,6 +5,7 @@ body {
   background-color: black;
   background-image: url(/src/img/boxer.jpg);
   background-size: cover;
+  background-attachment: fixed;
   backdrop-filter: blur(30px);
   color: #fff;
 }
@@ -67,6 +68,31 @@ article {
   color: hsl(250, 80%, 70%);
 
 }
+.instructions-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .7em;
+  margin-bottom: 1em;
+}
+.instructions-header #instruction-caret {
+  font-size: 1.2em;
+}
+.instructions-header h3 {
+  margin: 0;
+  opacity: .7;
+}
+.instructions-dropdown {
+  display: none;
+}
+.rotate {
+  transform: rotate(90deg);
+}
+.show {
+  display: flex;
+}
+
+
 .key-container {
   display: flex;
   flex-flow: column;
@@ -74,9 +100,12 @@ article {
   padding: 0 1em;
   border-top: 1px solid black;
 }
-.key-container-title, .key-container-info {
+.key-container-title{
   width: 100%;
   text-align: center;
+}
+.key-container-info {
+  margin: 1em 0;
 }
 .key-header {
   margin: .5em 0;
@@ -92,6 +121,9 @@ article {
   height: 2em;
   /* justify-self: flex-start; */
 }
+.keys {
+  width: 100%;
+}
 .key {
   width: 100%;
   display: grid;
@@ -104,29 +136,30 @@ article {
   background: #040404;
   padding: .5em;
   margin: 0;
+  color: #888;
 }
 .key span {
   justify-self: flex-end;
 }
-.key:nth-of-type(2) .color-cue {
+.key:nth-of-type(1) .color-cue {
   background-color: hsl(300, 80%, 70%);
-  border-bottom: .5px solid hsl(300, 80%, 70%);
+  /* border-bottom: .5px solid hsl(300, 80%, 70%); */
+}
+.key:nth-of-type(2) .color-cue {
+  background-color: hsl(280, 80%, 70%);
+  /* border-bottom: .5px solid hsl(280, 80%, 70%); */
 }
 .key:nth-of-type(3) .color-cue {
-  background-color: hsl(280, 80%, 70%);
-  border-bottom: .5px solid hsl(280, 80%, 70%);
-}
-.key:nth-of-type(4) .color-cue {
   background-color: hsl(250, 80%, 70%);
-  border-bottom: .5px solid hsl(250, 80%, 70%);
+  /* border-bottom: .5px solid hsl(250, 80%, 70%); */
 }
-.key:nth-of-type(2){
+.key:nth-of-type(1){
   border-bottom: .5px solid hsl(300, 80%, 70%);
 }
-.key:nth-of-type(3) {
+.key:nth-of-type(2) {
   border-bottom: .5px solid hsl(280, 80%, 70%);
 }
-.key:nth-of-type(4) {
+.key:nth-of-type(3) {
   border-bottom: .5px solid hsl(250, 80%, 70%);
 }
 #color3, #color2, #color1 {
