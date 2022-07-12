@@ -232,12 +232,20 @@ const getClientSettings =(thisMonth, currentMonth) => {
     }]
     count = 0;
   }
-  if(firstAttCache) contentEditable[0].textContent = firstAttCache
+  if(firstAttCache) {
+    contentEditable[0].textContent = firstAttCache
+    contentEditable[0].style.color = '#fff'
+  } 
   
-  if(secondAttCache) contentEditable[1].textContent = secondAttCache
+  if(secondAttCache){
+    contentEditable[1].textContent = secondAttCache
+    contentEditable[1].style.color = '#fff'
+  } 
   
-  if(thirdAttCache) contentEditable[2].textContent = thirdAttCache
-  
+  if(thirdAttCache) {
+    contentEditable[2].textContent = thirdAttCache
+    contentEditable[2].style.color = '#fff'
+  }
   if(colorCue0) {
     colorCues[0].style.backgroundColor = colorCue0
     keys[0].style.borderBottom = `.5px solid ${colorCue0}`
@@ -443,8 +451,12 @@ window.addEventListener('DOMContentLoaded', ()=> {
   })
 
   contentEditable.forEach((content) => {
+    content.addEventListener('focus', (e) => {
+      window.getSelection().selectAllChildren(e.target)
+    })
     content.addEventListener('focusout', (e) => {
       localStorage.setItem(`${e.target.id}`, e.target.outerText)
+      e.target.style.color = '#fff'
     })
     content.addEventListener('keypress', (e) => {
       if(e.key === 'Enter' || e.which === 13) {
@@ -453,6 +465,7 @@ window.addEventListener('DOMContentLoaded', ()=> {
       }
     })
   })
+  
   colors.forEach((color, i) => {
     color.addEventListener('input', (e) => {
       switch(i) {
